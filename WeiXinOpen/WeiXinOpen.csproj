@@ -233,6 +233,7 @@
     <Content Include="Global.asax" />
     <None Include="Properties\PublishProfiles\myPublishProfile.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="log.txt" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -291,10 +292,15 @@
       <Project>{d35095c0-9e01-49f3-a027-a83ac71178b0}</Project>
       <Name>Open.WeiXin</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Td.Weixin.Public\Td.Weixin.Public.Official.csproj">
+      <Project>{b0c87f3b-7c5d-480f-980e-6ccb1098eed0}</Project>
+      <Name>Td.Weixin.Public.Official</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

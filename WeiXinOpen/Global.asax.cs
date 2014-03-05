@@ -6,6 +6,9 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Td.Weixin.Public.Common;
+using Td.Weixin.Public.Message;
+using Open.WeiXin;
 
 namespace WeiXinOpen
 {
@@ -23,6 +26,9 @@ namespace WeiXinOpen
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
+
+            //注册事件处理程序
+            //ReceiveMessage.ResisterHandler(new WxMsgHandler());
         }
     }
 }

@@ -9,81 +9,78 @@ using System.IO;
 using System.Net;
 using Open.WeiXin;
 using Newtonsoft.Json;
+using System.Xml.Linq;
+using Td.Weixin.Public.Common;
+using Td.Weixin.Public.Message;
+
 
 
 namespace WeiXinOpen.Controllers
 {
     public class HomeController : Controller
     {
-        public RequestTextMessage RmRequest = null;
-        public ResponseTextMessage RmResponse = null;
+        //public static string RmRequest = null;
+        //public ResponseTextMessage RmResponse = null;
 
-        [HttpGet]
+        //[HttpGet]
+        //public ActionResult Index()
+        //{
+        //    //WeiXinBase weixin = WeiXinBase.getInstance();
+        //    //return Content(weixin.Access_Token);
+
+        //    var sign = EntrySign.ParseFromContext();
+        //    if (/*sign.Check()*/true)
+        //    {
+        //        if (EntrySign.IsEntryCheck())
+        //        {
+        //            sign.Response();
+        //        }
+        //        else
+        //        {
+        //            var msg = ReceiveMessage.ParseFromContext();
+        //            var rep = msg.Process();
+        //            rep.Response();
+        //        }
+        //    }
+        //    //return Content("request:" + rq + "\r\n" + "response:" + rp + "\r\n" + "xmlrequest:" + xmlResult);
+        //    return View();
+
+        //}
+
         public ActionResult Index()
         {
-            //WeiXinBase weixin = WeiXinBase.getInstance();
-            //return Content(weixin.Access_Token);
+            //注册事件处理程序
+            ReceiveMessage.ResisterHandler(new WxMsgHandler());
 
-            string xmlResult = string.Empty;
+            //var request = System.Web.HttpContext.Current.Request;
+            //var sr = new StreamReader(request.InputStream);
+            //var msg = Parse();
+            //string text = sr.ReadToEnd();
+            //var e = XElement.Parse(text);
+            //var t = e.Element("MsgType").Value;
 
-            ResponseTextMessage txtMsg = new ResponseTextMessage();
-            txtMsg.MsgType = "text";
-            txtMsg.Content = "你好！";
 
-            RmResponse = txtMsg;
+            //var sign = EntrySign.ParseFromContext();
 
-            string rq=JsonConvert.SerializeObject(RmRequest);
-            string rp=JsonConvert.SerializeObject(RmResponse);
-
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(RequestTextMessage));
-            using (MemoryStream ms = new MemoryStream())
-            {
-                xmlSerializer.Serialize(ms, RmRequest);
-                xmlResult = System.Text.Encoding.UTF8.GetString(ms.ToArray());
-            }
-
-            //return Content("request:"+xmlRequest+"\r\n"+"response:"+RmResponse);
-            return Content("request:" + rq + "\r\n" + "response:" + rp + "\r\n" + "xmlrequest:" + xmlResult);
-
-        }
-
-        [HttpPost]
-        public ContentResult Index(RequestTextMessage Msg)
-        {
-            RmRequest = Msg;
-
-            //Msg = new RequestTextMessage();
-            string xmlResult = string.Empty;
-
-            //switch (Msg.MsgType)
+            string respose = "回复出错!";
+            //if (/*sign.Check()*/true)
             //{
-            //    case "text":
-            //        {
-            ResponseTextMessage txtMsg = new ResponseTextMessage();
-            txtMsg.ToUserName = Msg.FromUserName;
-            txtMsg.FromUserName = Msg.ToUserName;
-            txtMsg.CreateTime = Msg.CreateTime;
-            txtMsg.MsgType = "text";
-            txtMsg.Content = "你好！";
-
-            RmResponse = txtMsg;
-
-            //XmlSerializer xmlSerializer = new XmlSerializer(typeof(ResponseTextMessage));
-            //using (MemoryStream ms = new MemoryStream())
-            //{
-            //    xmlSerializer.Serialize(ms, txtMsg);
-            //    xmlResult = System.Text.Encoding.UTF8.GetString(ms.ToArray());
-
+            //    if (/*EntrySign.IsEntryCheck()*/false)
+            //    {
+            //        sign.Response();
+            //    }
+            //    else
+            //    {
+            //LogHelper.Log(text);
+                    var msg = ReceiveMessage.ParseFromContext();
+                    //LogHelper.Log(msg.ToString());
+                    var rep = msg.Process();
+                    //LogHelper.Log(rep.ToXmlText());
+                    respose= rep.Response();
+            //    }
             //}
-            //            break;
-            //        }
-            //    default:
-            //        break;
-            //}
-            ////Response.Write(xmlResult);
-            RmResponse = txtMsg;
 
-            return Content("");
+                    return Content(respose);
         }
 
         [HttpGet]

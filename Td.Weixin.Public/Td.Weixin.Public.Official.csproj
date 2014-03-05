@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D35095C0-9E01-49F3-A027-A83AC71178B0}</ProjectGuid>
+    <ProjectGuid>{B0C87F3B-7C5D-480F-980E-6CCB1098EED0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Open.WeiXin</RootNamespace>
-    <AssemblyName>Open.WeiXin</AssemblyName>
+    <RootNamespace>Td.Weixin.Public</RootNamespace>
+    <AssemblyName>Td.Weixin.Public</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,31 +32,59 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Helpler.cs" />
-    <Compile Include="LogHelper.cs" />
-    <Compile Include="Models.cs" />
-    <Compile Include="WeiXinBase.cs" />
+    <Compile Include="Common\BasicResult.cs" />
+    <Compile Include="Common\Credential.cs" />
+    <Compile Include="Common\EntrySign.cs" />
+    <Compile Include="Common\Exception.cs" />
+    <Compile Include="Common\HttpHelper.cs" />
+    <Compile Include="Common\MenuHelper.cs" />
+    <Compile Include="Common\SellerContext.cs" />
+    <Compile Include="Common\SellerObtainer.cs" />
+    <Compile Include="Common\UserContext.cs" />
+    <Compile Include="Extra\Group.cs" />
+    <Compile Include="Extra\GroupManager.cs" />
+    <Compile Include="Extra\MediaManager.cs" />
+    <Compile Include="Extra\MessagePusher.cs" />
+    <Compile Include="Extra\OfficialUser.cs" />
+    <Compile Include="Extra\PushMessage.cs" />
+    <Compile Include="Extra\PushMessageData.cs" />
+    <Compile Include="Extra\PushMessageSub.cs" />
+    <Compile Include="Extra\QrCode.cs" />
+    <Compile Include="Extra\UserManager.cs" />
+    <Compile Include="Message\IMessageHandler.cs" />
+    <Compile Include="Message\Message.cs" />
+    <Compile Include="Message\MessageHelper.cs" />
+    <Compile Include="Message\ReceiveMessageSub.cs" />
+    <Compile Include="Message\MessageType.cs" />
+    <Compile Include="Message\ReceiveMessage.cs" />
+    <Compile Include="Message\RepMsgDataSub.cs" />
+    <Compile Include="Message\ResponseMessage.cs" />
+    <Compile Include="Message\ResponseMessageSub.cs" />
+    <Compile Include="Plugin\HelpPlugin.cs" />
+    <Compile Include="Plugin\Invoker.cs" />
+    <Compile Include="Plugin\InvokerContext.cs" />
+    <Compile Include="Plugin\MenuKeyPlugin.cs" />
+    <Compile Include="Plugin\Plugin.cs" />
+    <Compile Include="Plugin\PluginContext.cs" />
+    <Compile Include="Plugin\TextPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WxMsgHandler.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Td.Weixin.Public\Td.Weixin.Public.Official.csproj">
-      <Project>{b0c87f3b-7c5d-480f-980e-6ccb1098eed0}</Project>
-      <Name>Td.Weixin.Public.Official</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
